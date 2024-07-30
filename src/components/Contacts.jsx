@@ -2,7 +2,44 @@ import React from "react";
 import { FiMoreVertical, FiSearch, FiStar, FiTrash } from "react-icons/fi";
 import img from "../assets/img.jpg";
 
+const ContactCard = ({ name, location, role }) => (
+  <div className="border p-3 mt-3">
+    <div className="flex justify-between items-center">
+      <div className="flex items-start gap-3">
+        <div className="flex gap-3 items-center">
+          <img src={img} alt="profile" className="w-10 h-10 rounded-full" />
+          <div>
+            <h1 className="text-black">{name}</h1>
+            <p className="text-[14px]">{location}</p>
+          </div>
+        </div>
+        <span className="bg-purple-200 text-[12px] p-1 px-2 rounded-md text-purple-500">
+          {role}
+        </span>
+      </div>
+      <div className="flex gap-3 items-center">
+        <a href="#">
+          <FiStar className="h-5 w-5" />
+        </a>
+        <a href="#">
+          <FiTrash className="h-5 w-5" />
+        </a>
+        <a href="#">
+          <FiMoreVertical className="h-5 w-5" />
+        </a>
+      </div>
+    </div>
+  </div>
+);
+
 const Contacts = () => {
+  const contacts = [
+    { name: "John Doe", location: "Austin", role: "Employee" },
+    { name: "John Doe", location: "Austin", role: "Employee" },
+    { name: "John Doe", location: "Austin", role: "Employee" },
+    { name: "John Doe", location: "Austin", role: "Employee" },
+  ];
+
   return (
     <div className="text-gray-500">
       <div className="flex justify-between items-center gap-10">
@@ -19,118 +56,14 @@ const Contacts = () => {
         </div>
       </div>
       <div>
-        <div className="border p-3 mt-3">
-          <div className="flex justify-between items-center">
-            <div className="flex items-start gap-3">
-              <div className="flex gap-3 items-center">
-                <img src={img} alt="image" className="w-10 h-10 rounded-full" />
-                <div>
-                  <h1 className="text-black">John Doe</h1>
-                  <p className="text-[14px]">Austin</p>
-                </div>
-              </div>
-              <span className="bg-purple-200 text-[12px] p-1 px-2 rounded-md text-purple-500">
-                Employee
-              </span>
-            </div>
-
-            <div className="flex gap-3 items-center">
-              <a href="">
-                <FiStar className="h-5 w-5" />
-              </a>
-              <a href="">
-                <FiTrash className="h-5 w-5" />
-              </a>
-              <a href="">
-                <FiMoreVertical className="h-5 w-5" />
-              </a>
-            </div>
-          </div>
-        </div>
-        <div className="border p-3 mt-3">
-          <div className="flex justify-between items-center">
-            <div className="flex items-start gap-3">
-              <div className="flex gap-3 items-center">
-                <img src={img} alt="image" className="w-10 h-10 rounded-full" />
-                <div>
-                  <h1 className="text-black">John Doe</h1>
-                  <p className="text-[14px]">Austin</p>
-                </div>
-              </div>
-              <span className="bg-purple-200 text-[12px] p-1 px-2 rounded-md text-purple-500">
-                Employee
-              </span>
-            </div>
-
-            <div className="flex gap-3 items-center">
-              <a href="">
-                <FiStar className="h-5 w-5" />
-              </a>
-              <a href="">
-                <FiTrash className="h-5 w-5" />
-              </a>
-              <a href="">
-                <FiMoreVertical className="h-5 w-5" />
-              </a>
-            </div>
-          </div>
-        </div>
-        <div className="border p-3 mt-3">
-          <div className="flex justify-between items-center">
-            <div className="flex items-start gap-3">
-              <div className="flex gap-3 items-center">
-                <img src={img} alt="image" className="w-10 h-10 rounded-full" />
-                <div>
-                  <h1 className="text-black">John Doe</h1>
-                  <p className="text-[14px]">Austin</p>
-                </div>
-              </div>
-              <span className="bg-purple-200 text-[12px] p-1 px-2 rounded-md text-purple-500">
-                Employee
-              </span>
-            </div>
-
-            <div className="flex gap-3 items-center">
-              <a href="">
-                <FiStar className="h-5 w-5" />
-              </a>
-              <a href="">
-                <FiTrash className="h-5 w-5" />
-              </a>
-              <a href="">
-                <FiMoreVertical className="h-5 w-5" />
-              </a>
-            </div>
-          </div>
-        </div>
-        <div className="border p-3 mt-3">
-          <div className="flex justify-between items-center">
-            <div className="flex items-start gap-3">
-              <div className="flex gap-3 items-center">
-                <img src={img} alt="image" className="w-10 h-10 rounded-full" />
-                <div>
-                  <h1 className="text-black">John Doe</h1>
-                  <p className="text-[14px]">Austin</p>
-                </div>
-              </div>
-              <span className="bg-purple-200 text-[12px] p-1 px-2 rounded-md text-purple-500">
-                Employee
-              </span>
-            </div>
-
-            <div className="flex gap-3 items-center">
-              <a href="">
-                <FiStar className="h-5 w-5" />
-              </a>
-              <a href="">
-                <FiTrash className="h-5 w-5" />
-              </a>
-              <a href="">
-                <FiMoreVertical className="h-5 w-5" />
-              </a>
-            </div>
-          </div>
-        </div>
+        {contacts.map((contact, index) => (
+          <ContactCard
+            key={index}
+            name={contact.name}
+            location={contact.location}
+            role={contact.role}
+          />
+        ))}
       </div>
     </div>
   );

@@ -1,49 +1,70 @@
 import React from "react";
-
 import {
   FiHome,
-  FiActivity,
-  FiMap,
-  FiPlay,
   FiClock,
   FiSearch,
   FiMail,
   FiMessageCircle,
   FiFileText,
   FiPhone,
+  FiArrowLeft,
+  FiArrowRight,
+  FiTrash,
 } from "react-icons/fi";
 import img from "../assets/img.jpg";
 
-import { FiArrowLeft, FiArrowRight, FiTrash } from "react-icons/fi";
+const IconButton = ({ href, children }) => (
+  <a
+    href={href}
+    className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-400 text-gray-500 hover:bg-gray-100"
+  >
+    {children}
+  </a>
+);
 
-const IconButton = ({ href, children }) => {
-  return (
-    <a
-      href={href}
-      className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-400 text-gray-500 hover:bg-gray-100"
-    >
-      {children}
+const ActionButtons = () => (
+  <div className="flex space-x-2">
+    <IconButton href="">
+      <FiArrowLeft className="w-4 h-4" />
+    </IconButton>
+    <IconButton href="">
+      <FiArrowRight className="w-4 h-4" />
+    </IconButton>
+    <IconButton href="">
+      <FiTrash className="w-4 h-4" />
+    </IconButton>
+  </div>
+);
+
+const NavigationItem = ({ icon: Icon, label, active }) => (
+  <div
+    className={`p-3 flex items-center gap-1 ${
+      active ? "border-b-2 text-blue-500 border-blue-500" : "text-gray-500"
+    }`}
+  >
+    <Icon className="h-5 w-5" />
+    <a href="#" className="max-md:hidden">
+      {label}
     </a>
-  );
-};
-
-const ActionButtons = () => {
-  return (
-    <div className="flex space-x-2">
-      <IconButton href="">
-        <FiArrowLeft className="w-4 h-4" />
-      </IconButton>
-      <IconButton href="">
-        <FiArrowRight className="w-4 h-4" />
-      </IconButton>
-      <IconButton href="">
-        <FiTrash className="w-4 h-4" />
-      </IconButton>
-    </div>
-  );
-};
+  </div>
+);
 
 const Engagement = () => {
+  const navItems = [
+    { icon: FiHome, label: "All", active: false },
+    { icon: FiMail, label: "Email", active: true },
+    { icon: FiMessageCircle, label: "Chats", active: false },
+    { icon: FiFileText, label: "Notes", active: false },
+    { icon: FiClock, label: "Meetings", active: false },
+    { icon: FiPhone, label: "Phone calls", active: false },
+  ];
+
+  const engagementItems = [
+    { name: "Danielle", recipient: "Lucy Lockwood", date: "10 June 2024 10AM" },
+    { name: "Danielle", recipient: "Lucy Lockwood", date: "10 June 2024 10AM" },
+    { name: "Danielle", recipient: "Lucy Lockwood", date: "10 June 2024 10AM" },
+  ];
+
   return (
     <div className="text-gray-500">
       <div className="flex justify-between items-center gap-10">
@@ -60,90 +81,35 @@ const Engagement = () => {
         </div>
       </div>
       <div className="flex items-center gap-3 mt-3">
-        <div className="p-3 text-gray-500 flex items-center gap-1">
-          <FiHome className="h-5 w-5" />
-          <a href="" className="max-md:hidden">
-            All
-          </a>
-        </div>
-        <div className="border-b-2 p-3 text-blue-500 border-blue-500 flex items-center gap-1">
-          <FiMail className="h-5 w-5" />
-          <a href="" className="max-md:hidden">
-            Email
-          </a>
-        </div>
-        <div className="p-3 text-gray-500 flex items-center gap-1">
-          <FiMessageCircle className="h-5 w-5" />
-          <a href="" className="max-md:hidden">
-            Chats
-          </a>
-        </div>
-        <div className="p-3 text-gray-500 flex items-center gap-1">
-          <FiFileText className="h-5 w-5" />
-          <a href="" className="max-md:hidden">
-            Notes
-          </a>
-        </div>
-        <div className="p-3 text-gray-500 flex items-center gap-1">
-          <FiClock className="h-5 w-5" />
-          <a href="" className="max-md:hidden">
-            Meetings
-          </a>
-        </div>
-        <div className="p-3 text-gray-500 flex items-center gap-1">
-          <FiPhone className="h-5 w-5" />
-          <a href="" className="max-md:hidden">
-            Phone calls
-          </a>
-        </div>
+        {navItems.map((item, index) => (
+          <NavigationItem
+            key={index}
+            icon={item.icon}
+            label={item.label}
+            active={item.active}
+          />
+        ))}
       </div>
 
       <div>
-        <div className="border w-full flex justify-between items-center p-3 mt-3">
-          <div className="flex items-center gap-2">
-            <img src={img} alt="image" className="w-10 h-10 rounded-full" />
-            <div>
-              <h1 className="text-black font-semibold">Danielle</h1>
-              <div className="text-[14px]">
-                <p>To Lucy Lockwood</p>
-                <p>10 June 2024 10AM</p>
+        {engagementItems.map((item, index) => (
+          <div
+            key={index}
+            className="border w-full flex justify-between items-center p-3 mt-3"
+          >
+            <div className="flex items-center gap-2">
+              <img src={img} alt="profile" className="w-10 h-10 rounded-full" />
+              <div>
+                <h1 className="text-black font-semibold">{item.name}</h1>
+                <div className="text-[14px]">
+                  <p>To {item.recipient}</p>
+                  <p>{item.date}</p>
+                </div>
               </div>
             </div>
-          </div>
-          <div>
             <ActionButtons />
           </div>
-        </div>
-        <div className="border w-full flex justify-between items-center p-3 mt-3">
-          <div className="flex items-center gap-2">
-            <img src={img} alt="image" className="w-10 h-10 rounded-full" />
-            <div>
-              <h1 className="text-black font-semibold">Danielle</h1>
-              <div className="text-[14px]">
-                <p>To Lucy Lockwood</p>
-                <p>10 June 2024 10AM</p>
-              </div>
-            </div>
-          </div>
-          <div>
-            <ActionButtons />
-          </div>
-        </div>
-        <div className="border w-full flex justify-between items-center p-3 mt-3">
-          <div className="flex items-center gap-2">
-            <img src={img} alt="image" className="w-10 h-10 rounded-full" />
-            <div>
-              <h1 className="text-black font-semibold">Danielle</h1>
-              <div className="text-[14px]">
-                <p>To Lucy Lockwood</p>
-                <p>10 June 2024 10AM</p>
-              </div>
-            </div>
-          </div>
-          <div>
-            <ActionButtons />
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );
