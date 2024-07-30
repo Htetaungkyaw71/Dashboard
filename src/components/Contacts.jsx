@@ -36,7 +36,7 @@ const ContactCard = ({ name, location, role }) => (
         </a>
       </div>
     </div>
-    <div className="flex justify-between items-center mt-3">
+    <div className="flex max-sm:justify-normal justify-between max-sm:flex-col flex-row  mt-3">
       <div>
         <div className="flex items-center gap-2">
           <FiMail className="h-5 w-5" />
@@ -51,7 +51,7 @@ const ContactCard = ({ name, location, role }) => (
           </a>
         </div>
       </div>
-      <div className="flex gap-2 items-center">
+      <div className="flex gap-2 items-center max-sm:mt-2">
         <a
           href="#"
           className="border py-1 px-4 text-[14px] border-black rounded-md hover:bg-gray-100"
