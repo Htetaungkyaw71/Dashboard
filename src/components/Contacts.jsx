@@ -1,5 +1,12 @@
 import React from "react";
-import { FiMoreVertical, FiSearch, FiStar, FiTrash } from "react-icons/fi";
+import {
+  FiMail,
+  FiMoreVertical,
+  FiPhone,
+  FiSearch,
+  FiStar,
+  FiTrash,
+} from "react-icons/fi";
 import img from "../assets/img.jpg";
 
 const ContactCard = ({ name, location, role }) => (
@@ -29,12 +36,41 @@ const ContactCard = ({ name, location, role }) => (
         </a>
       </div>
     </div>
+    <div className="flex justify-between items-center mt-3">
+      <div>
+        <div className="flex items-center gap-2">
+          <FiMail className="h-5 w-5" />
+          <a href="#" className="underline">
+            robertfox@example.com
+          </a>
+        </div>
+        <div className="flex items-center gap-2 mt-1">
+          <FiPhone className="h-5 w-5" />
+          <a href="#" className="">
+            +1 234 567 890
+          </a>
+        </div>
+      </div>
+      <div className="flex gap-2 items-center">
+        <a
+          href="#"
+          className="border py-1 px-4 text-[14px] border-black rounded-md hover:bg-gray-100"
+        >
+          Call
+        </a>
+        <a
+          href="#"
+          className="border py-1 px-4 text-[14px] border-black rounded-md hover:bg-gray-100"
+        >
+          Mail
+        </a>
+      </div>
+    </div>
   </div>
 );
 
 const Contacts = () => {
   const contacts = [
-    { name: "John Doe", location: "Austin", role: "Employee" },
     { name: "John Doe", location: "Austin", role: "Employee" },
     { name: "John Doe", location: "Austin", role: "Employee" },
     { name: "John Doe", location: "Austin", role: "Employee" },
